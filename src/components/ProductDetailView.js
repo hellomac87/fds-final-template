@@ -9,6 +9,9 @@ class ProductDetailView extends Component {
     mainImgUrl: '',
     detailImgUrls: [],
     options: [],
+    // 장바구니 항목 추가 시 호출되는 함수
+    // params optionId, quantity
+    onCreateCartItem: () => {},
   };
 
   constructor(props) {
@@ -42,6 +45,7 @@ class ProductDetailView extends Component {
       mainImgUrl,
       detailImgUrls,
       options,
+      onCreateCartItem,
     } = this.props;
     const selectedOption = options.find(o => o.id === selectedOptionId);
     const totalPrice = selectedOption && selectedOption.price * quantity;
@@ -71,9 +75,22 @@ class ProductDetailView extends Component {
           onChange={e => this.handleQuantityChange(e)}
         />
         <div>
-          총가격
+          가격
           {totalPrice}
         </div>
+        <button
+          onClick={() => {
+            if (selectedOptionId === '') {
+              alert('옵션을 선택하세요');
+            } else if (quantity < 1) {
+              alert('1 이상의 수량을 입력하세요.');
+            } else {
+              onCreateCartItem(selectedOptionId, quantity);
+            }
+          }}
+        >
+          장바구니에 담기
+        </button>
         <div>{description}</div>
         <img src={mainImgUrl} alt={title} style={{ width: 100, height: 100 }} />
         {detailImgUrls.map((url, index) => (
