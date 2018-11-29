@@ -9,6 +9,7 @@ class Layout extends Component {
           <Link to={'/'} style={{ color: '#fff' }}>
             쇼핑몰
           </Link>
+          <Link to={'/login'}>로그인</Link>
         </div>
         <div style={{ margin: '0 auto', width: 500 }}>
           {this.props.children}
