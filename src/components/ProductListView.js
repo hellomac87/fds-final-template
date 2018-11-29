@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import withLoading from '../hoc/withLoading';
+import { Link } from 'react-router-dom';
 
 class ProductListView extends Component {
   static defaultProps = {
