@@ -1,25 +1,28 @@
 import React, { Component } from 'react';
 import ProductListView from '../components/ProductListView';
+import api from '../api';
 
 class ProductList extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      loading: true,
+      products: [],
+    };
+  }
+
+  async componentDidMount() {
+    const { data: products } = await api.get('/products');
+
+    this.setState({
+      products,
+      loading: false,
+    });
+  }
+
   render() {
-    const products = [
-      {
-        id: 1,
-        title: '자켓',
-        imgURL: '',
-      },
-      {
-        id: 2,
-        title: '코트',
-        imgURL: '',
-      },
-      {
-        id: 3,
-        title: '셔츠',
-        imgURL: '',
-      },
-    ];
+    const { products } = this.state;
     return <ProductListView products={products} />;
   }
 }
