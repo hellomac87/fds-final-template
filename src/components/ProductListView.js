@@ -20,8 +20,12 @@ class ProductListView extends Component {
         {products.map(p => (
           <div key={p.id}>
             <div>{p.id}</div>
-            <div>{p.title}</div>
-            <img src={p.imgURL} alt={p.title} />
+            <Link to={`/product/${p.id}`}>{p.title}</Link>
+            <img
+              style={{ display: 'block', width: 100, height: 100 }}
+              src={p.imgURL}
+              alt={p.title}
+            />
           </div>
         ))}
       </div>

@@ -17,8 +17,8 @@ class ProductDetailView extends Component {
         <div>{title}</div>
         <div>{description}</div>
         <img src={mainImgUrl} alt={title} />
-        {detailImgUrls.map(url => (
-          <img key={url} src={url} alt={title} />
+        {detailImgUrls.map((url, index) => (
+          <img key={index} src={url} alt={title} />
         ))}
       </div>
     );
