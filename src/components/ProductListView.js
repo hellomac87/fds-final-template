@@ -19,7 +19,7 @@ class ProductListView extends Component {
           <div key={p.id}>
             <div>{p.id}</div>
             <div>{p.title}</div>
-            <img src={p.mainImgUrl} alt={p.title} />
+            <img src={p.imgURL} alt={p.title} />
           </div>
         ))}
       </div>
