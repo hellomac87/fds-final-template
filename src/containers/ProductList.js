@@ -22,13 +22,13 @@ class ProductList extends Component {
   }
 
   render() {
-    const { products } = this.state;
+    const { products, loading } = this.state;
     const productList = products.map(p => ({
       title: p.title,
       id: p.id,
       imgURL: p.mainImgUrl,
     }));
-    return <ProductListView products={productList} />;
+    return <ProductListView loading={loading} products={productList} />;
   }
 }
 

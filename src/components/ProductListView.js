@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import withLoading from '../hoc/withLoading';
 
 class ProductListView extends Component {
   static defaultProps = {
@@ -27,4 +28,4 @@ class ProductListView extends Component {
   }
 }
 
-export default ProductListView;
+export default withLoading(ProductListView);
