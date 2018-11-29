@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 class LoginFormView extends Component {
   constructor(props) {
@@ -7,6 +8,7 @@ class LoginFormView extends Component {
     this.state = {
       username: '',
       password: '',
+      success: false,
     };
   }
 
@@ -19,10 +21,24 @@ class LoginFormView extends Component {
     });
   };
 
-  render() {
+  handleButtonClick = async () => {
     const { username, password } = this.state;
     const { onLogin } = this.props;
-    console.log(this.state);
+
+    await onLogin(username, password);
+    // 로그인이 성공적으로 끝났을 때
+    // Redirect 컴포넌트 렌더링
+    this.setState({
+      success: true,
+    });
+  };
+
+  render() {
+    const { username, password, success } = this.state;
+
+    if (success) {
+      return <Redirect to={'/'} />;
+    }
     return (
       <div>
         <input
@@ -37,7 +53,7 @@ class LoginFormView extends Component {
           name="password"
           type="password"
         />
-        <button onClick={() => onLogin(username, password)}>login</button>
+        <button onClick={() => this.handleButtonClick()}>login</button>
       </div>
     );
   }
