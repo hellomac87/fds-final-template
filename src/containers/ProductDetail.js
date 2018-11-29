@@ -17,12 +17,24 @@ class ProductDetail extends Component {
       mainImgUrl: '',
       detailImgUrls: [''],
       loading: true,
+      options: [
+        // {
+        //   id: 1,
+        //   productId: 1,
+        //   title: 'space gray',
+        //   price: 1700000,
+        // },
+      ],
     };
   }
 
   async componentDidMount() {
     const { productId } = this.props;
-    const { data: product } = await api.get(`/products/${productId}`);
+    const { data: product } = await api.get(`/products/${productId}`, {
+      params: {
+        _embed: 'options',
+      },
+    });
     this.setState({
       ...product,
       loading: false,
