@@ -16,7 +16,7 @@ class HeaderView extends Component {
     const { logoutSuccess } = this.state;
     const { username, logout } = this.props;
     if (logoutSuccess) {
-      return <Redirect to="/login" />;
+      return <Redirect to="/" />;
     }
     return (
       <div style={{ background: '#000', textAlign: 'center' }}>
