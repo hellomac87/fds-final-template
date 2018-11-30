@@ -2,22 +2,8 @@ import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 
 class HeaderView extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      logoutSuccess: false,
-    };
-  }
-
-  //  handleLogout = () => {};
-
   render() {
-    const { logoutSuccess } = this.state;
-    const { username, logout } = this.props;
-    if (logoutSuccess) {
-      return <Redirect to="/" />;
-    }
+    const { username, logout, history } = this.props;
     return (
       <div style={{ background: '#000', textAlign: 'center' }}>
         <div>
@@ -32,9 +18,7 @@ class HeaderView extends Component {
             <button
               onClick={() => {
                 logout();
-                this.setState({
-                  logoutSuccess: true,
-                });
+                history.push('/');
               }}
             >
               logout
